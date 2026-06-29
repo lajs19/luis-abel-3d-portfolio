@@ -6,8 +6,10 @@ Este archivo aplica para cualquier agente de IA que trabaje en el proyecto: Chat
 
 ## Archivos que deben leerse antes de trabajar
 
-Antes de modificar codigo, contenido, diseno o estructura, leer:
+Antes de modificar código, contenido, diseño o estructura, leer en este orden:
 
+- `STATUS.md` ← leer siempre primero
+- `WORKFLOW.md` ← leer siempre segundo
 - `README.md`
 - `docs/AI_CONTEXT.md`
 - `docs/PROJECT_BRIEF.md`
