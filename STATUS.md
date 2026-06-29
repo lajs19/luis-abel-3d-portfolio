@@ -4,7 +4,7 @@
 
 Agente: ChatGPT
 Fecha: 29 de junio de 2026
-Sesión: Claude dio visto bueno al paquete de coordinación multi-IA. El proyecto queda listo para iniciar Fase 1 con Codex.
+Sesión: Luis Abel confirmó que usará Codex con modelo GPT-5.4 mini y razonamiento alto para la Fase 1 de programación.
 
 ---
 
@@ -32,6 +32,7 @@ Estas decisiones están tomadas y no deben revertirse sin autorización de Luis 
 - Hosting: Vercel o Netlify (por confirmar).
 - Contenido profesional centralizado en `src/data`.
 - Cambios de documentación seguros se publican directamente en `main` cuando Luis Abel lo autorice.
+- Para la Fase 1 de programación, Luis Abel usará Codex con modelo GPT-5.4 mini y razonamiento alto.
 
 ---
 
@@ -61,6 +62,7 @@ Instrucciones detalladas: ver `CODEX.md`, `TASKS.md`, `STATUS.md`, `WORKFLOW.md`
 
 ## Notas para la próxima sesión
 
+- Codex debe usar configuración de razonamiento alto para la Fase 1.
 - `package.json` es un scaffold vacío sin dependencias. Codex debe inicializar el proyecto Next.js desde cero.
 - Las carpetas en `src/` existen pero están vacías (solo `.gitkeep`). Codex puede comenzar a poblarlas.
 - No existe código aún. El repositorio es 100% documentación en este momento.
@@ -76,3 +78,4 @@ Instrucciones detalladas: ver `CODEX.md`, `TASKS.md`, `STATUS.md`, `WORKFLOW.md`
 |---|---|---|
 | 2026-06-29 | Claude | Auditoría documental. Identificación de brechas. Creación de GPT.md, STATUS.md, WORKFLOW.md. |
 | 2026-06-29 | ChatGPT | Publicación en main del paquete multi-IA y actualización de estado tras visto bueno de Claude. |
+| 2026-06-29 | ChatGPT | Registro de configuración elegida para Codex: GPT-5.4 mini con razonamiento alto para Fase 1. |
