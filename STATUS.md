@@ -2,9 +2,9 @@
 
 ## Última actualización
 
-Agente: Claude (auditoría documental inicial)
+Agente: ChatGPT
 Fecha: 29 de junio de 2026
-Sesión: Auditoría completa de la base documental. Identificación de brechas para coordinación multi-IA. Creación de documentos de coordinación.
+Sesión: Claude dio visto bueno al paquete de coordinación multi-IA. El proyecto queda listo para iniciar Fase 1 con Codex.
 
 ---
 
@@ -31,6 +31,7 @@ Estas decisiones están tomadas y no deben revertirse sin autorización de Luis 
 - Formato de modelos 3D: GLB / GLTF.
 - Hosting: Vercel o Netlify (por confirmar).
 - Contenido profesional centralizado en `src/data`.
+- Cambios de documentación seguros se publican directamente en `main` cuando Luis Abel lo autorice.
 
 ---
 
@@ -54,7 +55,7 @@ Estos campos NO deben ser completados por ningún agente IA.
 
 Agente: Codex
 Tarea: Fase 1 — Setup técnico inicial
-Instrucciones detalladas: ver `CODEX.md` y `TASKS.md` → Fase 1.
+Instrucciones detalladas: ver `CODEX.md`, `TASKS.md`, `STATUS.md`, `WORKFLOW.md`, `AGENTS.md` y `AI_CONTEXT.md`.
 
 ---
 
@@ -74,3 +75,4 @@ Instrucciones detalladas: ver `CODEX.md` y `TASKS.md` → Fase 1.
 | Fecha | Agente | Resumen |
 |---|---|---|
 | 2026-06-29 | Claude | Auditoría documental. Identificación de brechas. Creación de GPT.md, STATUS.md, WORKFLOW.md. |
+| 2026-06-29 | ChatGPT | Publicación en main del paquete multi-IA y actualización de estado tras visto bueno de Claude. |
