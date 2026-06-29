@@ -1,83 +1,76 @@
-# Estado del proyecto — Luis Abel 3D Portfolio
+# STATUS.md — Estado del proyecto
 
 ## Última actualización
 
-Agente: ChatGPT  
-Fecha: 2026-06-28  
-Sesión: Incorporación del sistema de estado vivo y protocolo multi-IA sugerido por Claude.
+Agente: Claude (auditoría documental inicial)
+Fecha: 29 de junio de 2026
+Sesión: Auditoría completa de la base documental. Identificación de brechas para coordinación multi-IA. Creación de documentos de coordinación.
+
+---
 
 ## Estado actual por fase
 
-| Fase | Estado | Responsable | Bloqueado por |
+| Fase | Estado | Agente sugerido | Bloqueado por |
 |---|---|---|---|
-| Fase 0 — Documentación base | ✅ Completo | Luis Abel | — |
-| Fase 0.5 — Cierre de especificación | ⏳ En progreso | Luis Abel + Claude + ChatGPT | Pendiente cerrar datos clave |
-| Fase 0.6 — Auditoría técnica documental | ⬜ No iniciado | Gemini | Espera cierre de Fase 0.5 |
-| Fase 1 — Setup técnico | ⬜ No iniciado | Codex | Espera aprobación de Gemini |
+| Fase 0 — Documentación base | ✅ Completo | — | — |
+| Fase 1 — Setup técnico | ⏳ Listo para iniciar | Codex | Nada. Puede iniciar. |
 | Fase 2 — MVP interactivo | ⬜ No iniciado | Codex | Fase 1 |
-| Fase 3 — Assets 3D | ⬜ No iniciado | Luis Abel + Gemini + Codex | MVP base |
-| Fase 4 — Optimización | ⬜ No iniciado | Gemini + Codex | Assets iniciales |
-| Fase 5 — Publicación | ⬜ No iniciado | Codex | Build estable |
+| Fase 3 — Assets 3D | ⬜ No iniciado | Codex + Luis Abel | Fase 2 + modelos |
+| Fase 4 — Optimización y publicación | ⬜ No iniciado | Gemini | Fase 3 |
 
-## Decisiones tomadas
+---
 
-- Stack técnico propuesto: Next.js + React + TypeScript + React Three Fiber + Drei + Tailwind CSS.
-- Nombre conceptual inicial: Luis Abel Design Lab.
-- Concepto principal: CV/portafolio interactivo 3D en forma de oficina técnica, taller CAD y laboratorio de ingeniería.
-- Navegación inicial recomendada: guiada por clics, no tipo videojuego.
-- Enfoque visual: profesional, técnico, moderno, claro y no excesivamente lúdico.
-- El contenido visible debe estar en español.
-- Los nombres de componentes, funciones, variables y archivos de código deben estar en inglés.
-- Los datos profesionales deben vivir en `src/data`.
-- No se debe afirmar que Luis Abel es graduado en Ingeniería Mecatrónica.
-- Forma correcta de presentar la formación: “formación universitaria avanzada en Ingeniería Mecatrónica”.
+## Decisiones confirmadas
 
-## Decisiones pendientes
+Estas decisiones están tomadas y no deben revertirse sin autorización de Luis Abel.
 
-- [ ] Título profesional oficial del sitio.
-- [ ] Confirmar si el nombre público será “Luis Abel Design Lab” u otra variante.
-- [ ] Confirmar si el sitio será solo español en MVP o preparado para bilingüe futuro.
-- [ ] Confirmar navegación exacta del MVP: cámara fija, OrbitControls limitado o tour guiado básico.
-- [ ] Confirmar si el MVP incluirá únicamente zonas 1, 2, 6 y 10.
+- Stack: Next.js + TypeScript + React Three Fiber + Drei + Tailwind CSS + Framer Motion.
+- Nombre conceptual del sitio: Luis Abel Design Lab.
+- Idioma del contenido visible: español.
+- Idioma del código, variables y archivos: inglés.
+- Formato de modelos 3D: GLB / GLTF.
+- Hosting: Vercel o Netlify (por confirmar).
+- Contenido profesional centralizado en `src/data`.
 
-## Bloqueantes activos
+---
 
-- [ ] Título profesional elegido para el sitio.
-- [ ] Datos completos de Presa Montegrande.
-- [ ] Datos completos de Presa Yacahueque.
-- [ ] Datos completos de Parque Fotovoltaico Bayasol.
-- [ ] Email público.
-- [ ] Teléfono público o WhatsApp.
-- [ ] LinkedIn URL.
-- [ ] CV en PDF final disponible para descarga.
-- [ ] Foto profesional final.
-- [ ] Confirmar restricciones de confidencialidad por proyecto.
+## Bloqueantes activos — solo Luis Abel puede resolverlos
+
+Estos campos NO deben ser completados por ningún agente IA.
+
+- [ ] Título profesional oficial para el sitio (ver `AI_CONTEXT.md` → sección "Título oficial del sitio").
+- [ ] Ficha completa de Presa Montegrande (rol, responsabilidades, herramientas, entregables, resultados, imágenes, confidencialidad).
+- [ ] Ficha completa de Presa Yacahueque (mismos campos).
+- [ ] Ficha completa de Parque Fotovoltaico Bayasol (mismos campos).
+- [ ] Email de contacto profesional.
+- [ ] Teléfono de contacto.
+- [ ] URL del perfil de LinkedIn.
+- [ ] Archivo PDF del CV listo para descarga.
+- [ ] Foto profesional para la zona de entrada de la escena.
+
+---
 
 ## Próxima tarea recomendada
 
-Agente sugerido: Claude.
+Agente: Codex
+Tarea: Fase 1 — Setup técnico inicial
+Instrucciones detalladas: ver `CODEX.md` y `TASKS.md` → Fase 1.
 
-Tarea:
-
-Continuar la Fase 0.5 y ayudar a cerrar los documentos de especificación antes de pasar a Gemini.
-
-Prioridad inmediata:
-
-1. Confirmar título profesional oficial.
-2. Crear o revisar `MVP_SCOPE.md`.
-3. Crear o revisar `NAVIGATION_DESIGN.md`.
-4. Crear o revisar `COPY_DECK.md`.
-5. Crear o revisar `PROJECT_DATA.md`.
-6. Marcar claramente los datos pendientes para que ninguna IA los invente.
+---
 
 ## Notas para la próxima sesión
 
-Este proyecto se trabajará progresivamente por fases. No usar Gemini ni Codex todavía.
+- `package.json` es un scaffold vacío sin dependencias. Codex debe inicializar el proyecto Next.js desde cero.
+- Las carpetas en `src/` existen pero están vacías (solo `.gitkeep`). Codex puede comenzar a poblarlas.
+- No existe código aún. El repositorio es 100% documentación en este momento.
+- Gemini no tiene trabajo hasta que haya código que revisar.
+- Claude puede trabajar en el copy de la Zona 1 (Entrada) cuando Luis Abel defina el título profesional oficial.
+- GPT puede preparar el copy de la tarjeta de presentación y paneles base cuando se confirme el título.
 
-Claude debe continuar como revisor de documentación, UX y contenido profesional.
+---
 
-Gemini entrará después para auditar si la documentación está lista para implementación.
+## Historial de sesiones
 
-Codex solo debe recibir tareas de programación cuando Gemini confirme que no hay bloqueadores críticos.
-
-El objetivo inmediato no es programar, sino evitar que los agentes implementen con información incompleta o contradictoria.
+| Fecha | Agente | Resumen |
+|---|---|---|
+| 2026-06-29 | Claude | Auditoría documental. Identificación de brechas. Creación de GPT.md, STATUS.md, WORKFLOW.md. |
