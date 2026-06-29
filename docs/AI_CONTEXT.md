@@ -1,4 +1,4 @@
-﻿# AI Context — Luis Abel 3D Portfolio
+# AI Context — Luis Abel 3D Portfolio
 
 Este documento contiene el contexto maestro del proyecto. Cualquier asistente de IA que trabaje en este repositorio debe leer este archivo antes de modificar código, contenido, diseño o estructura.
 
@@ -58,6 +58,18 @@ El espacio debe representar:
 * Capacidad técnica.
 * Creatividad.
 * Confianza.
+
+## Título oficial del sitio
+
+Estado: PENDIENTE DE DECISIÓN DEL PROPIETARIO.
+
+Ningún agente debe elegir o cambiar el título oficial del sitio sin aprobación explícita de Luis Abel.
+
+Opciones de referencia no definitivas:
+
+* Encargado de Diseño Técnico | Proyectos Civiles, Mecánicos y Eléctricos.
+* Especialista en Diseño Técnico, Supervisión y Visualización 3D.
+* Diseño Técnico | Líneas de Transmisión | Fundaciones | Proyectos.
 
 ## Narrativa de la experiencia
 
@@ -203,82 +215,31 @@ No inventar normas específicas, secciones ni códigos si no han sido confirmado
 
 ## Proyectos relevantes confirmados
 
-* Presa Montegrande.
-* Presa Yacahueque.
-* Parque Fotovoltaico Bayasol.
+### Presa Montegrande
 
-Se necesita completar para cada proyecto:
+<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
+     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
+     Campos requeridos: rol, responsabilidades, herramientas, entregables,
+     resultados, imágenes disponibles, restricciones de confidencialidad. -->
 
-* Rol exacto.
-* Responsabilidades.
-* Herramientas usadas.
-* Tipo de entregables.
-* Resultados.
-* Imágenes o renders disponibles.
-* Restricciones de confidencialidad.
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
+
+### Presa Yacahueque
+
+<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
+     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
+     Campos requeridos: rol, responsabilidades, herramientas, entregables,
+     resultados, imágenes disponibles, restricciones de confidencialidad. -->
+
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
+
+### Parque Fotovoltaico Bayasol
+
+<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
+     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
+     Campos requeridos: rol, responsabilidades, herramientas, entregables,
+     resultados, imágenes disponibles, restricciones de confidencialidad. -->
+
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
 
 No inventar detalles no confirmados.
-
-## Habilidades blandas
-
-* Liderazgo.
-* Trabajo en equipo.
-* Comunicación efectiva.
-* Manejo de crisis.
-* Resolución de problemas.
-* Aprendizaje rápido.
-* Responsabilidad.
-* Organización.
-* Orientación a resultados.
-* Coordinación de personal técnico.
-* Trato con clientes.
-
-## Secciones del sitio
-
-El sitio debe tener estas zonas principales:
-
-1. Entrada / presentación.
-2. Escritorio CAD.
-3. Zona de diseño arquitectónico/civil.
-4. Torre de transmisión eléctrica.
-5. Maqueta de fundación.
-6. Pared de proyectos.
-7. Laboratorio de simulación.
-8. Biblioteca de normas.
-9. Certificaciones.
-10. Contacto.
-
-## Objetos interactivos sugeridos
-
-* Tarjeta profesional.
-* Escritorio.
-* Monitor.
-* Laptop.
-* Planos.
-* Mouse 3D.
-* Torre eléctrica.
-* Maqueta de fundación.
-* Modelo de presa.
-* Panel solar.
-* Pantalla de simulación.
-* Casco de seguridad.
-* Biblioteca.
-* Certificados.
-* Teléfono.
-* Código QR.
-* Botón para descargar CV.
-
-## MVP esperado
-
-La primera versión funcional debe incluir:
-
-* Landing 3D básica.
-* Oficina/taller 3D simple.
-* Cámara navegable o guiada.
-* Objetos clicables.
-* Paneles de información.
-* Información profesional base.
-* Sección de proyectos.
-* Botón de descarga de CV.
-* Enlace a LinkedIn.
-* Diseño responsive básico.
