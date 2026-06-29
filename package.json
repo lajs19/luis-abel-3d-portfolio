@@ -1,6 +1,32 @@
 {
-  "name": "luis-abel-3d-portfolio",
-  "private": true,
-  "version": "0.1.0",
-  "description": "Repository scaffold for the Luis Abel 3D portfolio project"
+    "name":  "luis-abel-3d-portfolio",
+    "private":  true,
+    "version":  "0.1.0",
+    "description":  "Luis Abel Design Lab - 3D portfolio setup",
+    "scripts":  {
+                    "dev":  "next dev",
+                    "build":  "next build",
+                    "start":  "next start",
+                    "lint":  "eslint src --ext .js,.jsx,.ts,.tsx"
+                },
+    "dependencies":  {
+                         "@react-three/drei":  "^10.5.0",
+                         "@react-three/fiber":  "^9.3.0",
+                         "framer-motion":  "^11.13.0",
+                         "next":  "^15.0.0",
+                         "react":  "^19.0.0",
+                         "react-dom":  "^19.0.0",
+                         "three":  "^0.177.0"
+                     },
+    "devDependencies":  {
+                            "@types/node":  "^22.10.0",
+                            "@types/react":  "^19.0.0",
+                            "@types/react-dom":  "^19.0.0",
+                            "autoprefixer":  "^10.4.20",
+                            "eslint":  "^8.57.0",
+                            "eslint-config-next":  "^15.0.0",
+                            "postcss":  "^8.4.49",
+                            "tailwindcss":  "^3.4.14",
+                            "typescript":  "^5.6.3"
+                        }
 }
