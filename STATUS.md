@@ -4,7 +4,7 @@
 
 Agente: ChatGPT
 Fecha: 29 de junio de 2026
-Sesión: Luis Abel confirmó que usará Codex con modelo GPT-5.4 mini y razonamiento alto para la Fase 1 de programación.
+Sesión: Claude entregó el paquete UX/UI lunar LADS-01. ChatGPT dividió y publicó la documentación base del concepto lunar en `main`.
 
 ---
 
@@ -13,7 +13,8 @@ Sesión: Luis Abel confirmó que usará Codex con modelo GPT-5.4 mini y razonami
 | Fase | Estado | Agente sugerido | Bloqueado por |
 |---|---|---|---|
 | Fase 0 — Documentación base | ✅ Completo | — | — |
-| Fase 1 — Setup técnico | ⏳ Listo para iniciar | Codex | Nada. Puede iniciar. |
+| Fase 0.7 — UX/UI lunar LADS-01 | ✅ Documentación base publicada | ChatGPT + Claude | Falta revisar prototipo HTML y cerrar datos de contacto |
+| Fase 1 — Setup técnico | ⏳ Siguiente fase | Codex | Espera instrucción final basada en docs lunares |
 | Fase 2 — MVP interactivo | ⬜ No iniciado | Codex | Fase 1 |
 | Fase 3 — Assets 3D | ⬜ No iniciado | Codex + Luis Abel | Fase 2 + modelos |
 | Fase 4 — Optimización y publicación | ⬜ No iniciado | Gemini | Fase 3 |
@@ -25,14 +26,27 @@ Sesión: Luis Abel confirmó que usará Codex con modelo GPT-5.4 mini y razonami
 Estas decisiones están tomadas y no deben revertirse sin autorización de Luis Abel.
 
 - Stack: Next.js + TypeScript + React Three Fiber + Drei + Tailwind CSS + Framer Motion.
-- Nombre conceptual del sitio: Luis Abel Design Lab.
+- Nombre conceptual del sitio: Luis Abel Lunar Design Lab.
+- Estación interna: LADS-01 (Lunar Advanced Design Station 01).
+- Concepto visual: estación de ingeniería en órbita lunar, inspirada en NASA/Artemis/Mission Control, sin usar logos oficiales de NASA.
 - Idioma del contenido visible: español.
 - Idioma del código, variables y archivos: inglés.
 - Formato de modelos 3D: GLB / GLTF.
-- Hosting: Vercel o Netlify (por confirmar).
+- Hosting recomendado: Vercel o Netlify (por confirmar).
 - Contenido profesional centralizado en `src/data`.
 - Cambios de documentación seguros se publican directamente en `main` cuando Luis Abel lo autorice.
 - Para la Fase 1 de programación, Luis Abel usará Codex con modelo GPT-5.4 mini y razonamiento alto.
+
+---
+
+## Documentos UX/UI lunares publicados
+
+- `docs/CONCEPT_STATEMENT.md`
+- `docs/UX_FLOW.md`
+- `docs/SCENE_STYLE.md`
+- `docs/MVP_SCOPE.md`
+- `docs/INTERACTIONS.md`
+- `docs/SCENE_MAP.md`
 
 ---
 
@@ -40,7 +54,6 @@ Estas decisiones están tomadas y no deben revertirse sin autorización de Luis 
 
 Estos campos NO deben ser completados por ningún agente IA.
 
-- [ ] Título profesional oficial para el sitio (ver `AI_CONTEXT.md` → sección "Título oficial del sitio").
 - [ ] Ficha completa de Presa Montegrande (rol, responsabilidades, herramientas, entregables, resultados, imágenes, confidencialidad).
 - [ ] Ficha completa de Presa Yacahueque (mismos campos).
 - [ ] Ficha completa de Parque Fotovoltaico Bayasol (mismos campos).
@@ -54,21 +67,21 @@ Estos campos NO deben ser completados por ningún agente IA.
 
 ## Próxima tarea recomendada
 
+Agente: ChatGPT + Luis Abel
+Tarea: Revisar el prototipo HTML entregado por Claude (`LADS01-prototype.html`) y decidir si se publica en el repositorio como referencia visual para Codex.
+
+Luego:
 Agente: Codex
-Tarea: Fase 1 — Setup técnico inicial
-Instrucciones detalladas: ver `CODEX.md`, `TASKS.md`, `STATUS.md`, `WORKFLOW.md`, `AGENTS.md` y `AI_CONTEXT.md`.
+Tarea: Fase 1 — Setup técnico inicial basado en los documentos lunares publicados.
 
 ---
 
 ## Notas para la próxima sesión
 
-- Codex debe usar configuración de razonamiento alto para la Fase 1.
-- `package.json` es un scaffold vacío sin dependencias. Codex debe inicializar el proyecto Next.js desde cero.
-- Las carpetas en `src/` existen pero están vacías (solo `.gitkeep`). Codex puede comenzar a poblarlas.
-- No existe código aún. El repositorio es 100% documentación en este momento.
-- Gemini no tiene trabajo hasta que haya código que revisar.
-- Claude puede trabajar en el copy de la Zona 1 (Entrada) cuando Luis Abel defina el título profesional oficial.
-- GPT puede preparar el copy de la tarjeta de presentación y paneles base cuando se confirme el título.
+- No usar el concepto anterior de oficina/taller como dirección principal.
+- Codex debe implementar una base Next.js + R3F orientada al concepto LADS-01.
+- El prototipo HTML de Claude puede usarse como referencia visual, no como código final de producción.
+- Gemini entrará después de que exista código funcional para revisar arquitectura, rendimiento y accesibilidad.
 
 ---
 
@@ -79,3 +92,5 @@ Instrucciones detalladas: ver `CODEX.md`, `TASKS.md`, `STATUS.md`, `WORKFLOW.md`
 | 2026-06-29 | Claude | Auditoría documental. Identificación de brechas. Creación de GPT.md, STATUS.md, WORKFLOW.md. |
 | 2026-06-29 | ChatGPT | Publicación en main del paquete multi-IA y actualización de estado tras visto bueno de Claude. |
 | 2026-06-29 | ChatGPT | Registro de configuración elegida para Codex: GPT-5.4 mini con razonamiento alto para Fase 1. |
+| 2026-06-29 | Claude | Entrega del paquete UX/UI lunar LADS-01 y prototipo HTML. |
+| 2026-06-29 | ChatGPT | Publicación en main de documentos base: concept statement, UX flow, scene style, MVP scope, interactions y scene map lunar. |
