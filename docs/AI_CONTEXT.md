@@ -16,6 +16,25 @@ Perfil:
 
 Profesional técnico con formación universitaria avanzada en Ingeniería Mecatrónica, especializado en diseño, supervisión y gestión de proyectos técnicos.
 
+## Título oficial del sitio
+
+<!-- DATOS_PENDIENTES
+     Luis Abel debe elegir UNO de los siguientes títulos o proponer uno nuevo.
+     NINGÚN AGENTE debe usar un título hasta que Luis Abel confirme su elección.
+     Una vez confirmado, documentarlo aquí y en STATUS.md como decisión tomada.
+-->
+
+Estado: EN ESPERA DE DECISIÓN DEL PROPIETARIO
+
+Opciones propuestas para revisión de Luis Abel:
+
+- "Encargado de Diseño | Supervisión de Proyectos | Diseño 3D"
+- "Especialista en Diseño Mecánico y Gestión Técnica de Proyectos"
+- "Diseño Técnico · Líneas de Transmisión · Fundaciones · Simulación"
+- "Encargado de Diseño y Proyectos Técnicos | SERVINCA"
+
+Título confirmado: [PENDIENTE — decisión de Luis Abel]
+
 ## Áreas principales
 
 * Diseño mecánico.
@@ -58,18 +77,6 @@ El espacio debe representar:
 * Capacidad técnica.
 * Creatividad.
 * Confianza.
-
-## Título oficial del sitio
-
-Estado: PENDIENTE DE DECISIÓN DEL PROPIETARIO.
-
-Ningún agente debe elegir o cambiar el título oficial del sitio sin aprobación explícita de Luis Abel.
-
-Opciones de referencia no definitivas:
-
-* Encargado de Diseño Técnico | Proyectos Civiles, Mecánicos y Eléctricos.
-* Especialista en Diseño Técnico, Supervisión y Visualización 3D.
-* Diseño Técnico | Líneas de Transmisión | Fundaciones | Proyectos.
 
 ## Narrativa de la experiencia
 
@@ -215,31 +222,37 @@ No inventar normas específicas, secciones ni códigos si no han sido confirmado
 
 ## Proyectos relevantes confirmados
 
+Los siguientes proyectos están confirmados por Luis Abel. Los datos de cada uno están PENDIENTES.
+
 ### Presa Montegrande
 
-<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
-     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
-     Campos requeridos: rol, responsabilidades, herramientas, entregables,
-     resultados, imágenes disponibles, restricciones de confidencialidad. -->
+<!-- DATOS_PENDIENTES
+     NINGÚN AGENTE debe completar, asumir ni inventar estos campos.
+     Solo Luis Abel puede llenarlos.
+     Campos requeridos:
+     - Rol exacto en el proyecto
+     - Responsabilidades específicas
+     - Herramientas utilizadas
+     - Tipo de entregables producidos
+     - Resultados (si pueden mencionarse)
+     - Imágenes o renders disponibles
+     - Restricciones de confidencialidad
+-->
 
-Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO
 
 ### Presa Yacahueque
 
-<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
-     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
-     Campos requeridos: rol, responsabilidades, herramientas, entregables,
-     resultados, imágenes disponibles, restricciones de confidencialidad. -->
+<!-- DATOS_PENDIENTES
+     Mismos campos requeridos que Presa Montegrande.
+-->
 
-Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO
 
 ### Parque Fotovoltaico Bayasol
 
-<!-- DATOS_PENDIENTES: Luis Abel debe completar esta sección.
-     NINGÚN AGENTE DEBE INVENTAR O ASUMIR ESTOS DATOS.
-     Campos requeridos: rol, responsabilidades, herramientas, entregables,
-     resultados, imágenes disponibles, restricciones de confidencialidad. -->
+<!-- DATOS_PENDIENTES
+     Mismos campos requeridos que Presa Montegrande.
+-->
 
-Estado: EN ESPERA DE DATOS DEL PROPIETARIO.
-
-No inventar detalles no confirmados.
+Estado: EN ESPERA DE DATOS DEL PROPIETARIO
