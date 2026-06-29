@@ -1,218 +1,166 @@
-﻿# Scene Map
+# SCENE_MAP.md
 
-## Concepto de escena
+> Versión actualizada: 2026-06-29
+> Concepto anterior (oficina/taller) reemplazado por estación lunar LADS-01.
+> Aprobado por Luis Abel Javier de los Santos.
 
-La escena principal será una oficina técnica / taller de diseño donde el visitante puede explorar diferentes áreas profesionales.
+## Nombre del entorno
 
-La experiencia debe sentirse como entrar al espacio de trabajo de Luis Abel, donde cada objeto comunica una parte de su perfil.
+**Luis Abel Lunar Design Lab — LADS-01**
+Estación de ingeniería en órbita lunar. Estética NASA/Artemis.
 
-## Zona 1 — Entrada / presentación
+## Estructura de la escena
 
-Objetos:
+```txt
+EXTERIOR (fondo)
+├── Starfield (2000+ partículas)
+├── Superficie lunar (visible abajo)
+└── STATION GROUP (Three.js Group)
+    ├── Truss central horizontal
+    ├── Strut vertical central
+    ├── Nodos de conexión (5)
+    ├── Módulo 01 — Airlock
+    ├── Módulo 02 — Mission Table
+    ├── Módulo 03 — CAD Bay
+    ├── Módulo 04 — Mission Archive
+    ├── Módulo 05 — Communications
+    └── Solar arrays (izquierdo + derecho)
+```
 
-* Placa de presentación.
-* Tarjeta profesional.
-* Retrato profesional.
+---
 
-Contenido:
+## MÓDULOS MVP (v1.0)
 
-* Nombre.
-* Título profesional.
-* Resumen corto.
-* Botón para descargar CV.
-* Botón para contacto.
+### Módulo 01 — Airlock / Entrada [MVP]
 
-Título sugerido:
+**Posición en escena:** derecha del truss, Z+ (frente)
+**Cámara preset:** position(7, 0.5, 8) → lookAt(3.5, 0, 0.5)
 
-Luis Abel Javier de los Santos
-Encargado de Diseño | Supervisión de Proyectos | Diseño 3D
+**Objetos interactivos:**
+- Placa de presentación → Nombre, título oficial, tagline LADS-01
+- Panel de bienvenida → Bio corta, empresa, cargo, años de experiencia
+- Terminal de acceso → Descarga CV, LinkedIn, explorar estación
 
-## Zona 2 — Escritorio CAD
+**Contenido confirmado:**
+- Nombre: Luis Abel Javier de los Santos
+- Línea 1: Especialista en Diseño Técnico y Simulación FEA/CFD
+- Línea 2: Supervisión y Coordinación de Proyectos de Ingeniería
+- Empresa: SERVINCA — Taller de Hidromecánica
+- Desde: octubre 2021
 
-Objetos:
+---
 
-* Monitor.
-* Laptop.
-* Mouse 3D.
-* Teclado.
-* Planos.
-* Modelo mecánico sobre escritorio.
+### Módulo 02 — Holographic Mission Table [MVP]
 
-Contenido:
+**Posición en escena:** arriba del strut vertical
+**Cámara preset:** position(0.5, 5.5, 8) → lookAt(0.4, 2.3, 0)
 
-* SolidWorks.
-* AutoCAD.
-* Inventor.
-* Fusion 360.
-* SketchUp.
-* 3ds Max.
-* Revit.
-* Modelado 3D.
-* Planos técnicos.
-* Documentación de fabricación.
-* Renderizado.
+**Objetos interactivos:**
+- Mesa holográfica → Áreas de especialidad (5 tags)
+- Display de misión → Formación, empresa, años
+- Panel de habilidades → Gestión, liderazgo, idiomas, normas
 
-## Zona 3 — Diseño arquitectónico/civil
+**Contenido confirmado:**
+- Áreas: Diseño Mecánico, FEA/CFD, Líneas de Transmisión, Fundaciones, Documentación
+- Formación: universitaria avanzada en Ingeniería Mecatrónica
+- Normas: AWS, ASME, AISC, ASTM
 
-Objetos:
+---
 
-* Plano arquitectónico.
-* Casco.
-* Regla.
-* Maqueta de edificio o estructura.
-* Mesa de revisión.
+### Módulo 03 — CAD Engineering Bay [MVP]
 
-Contenido:
+**Posición en escena:** izquierda del truss, Z+ (frente)
+**Cámara preset:** position(-7, 0.5, 8) → lookAt(-3.5, 0, 0.4)
 
-* Supervisión de diseño.
-* Coordinación de técnicos.
-* Revisión de planos.
-* Gestión de entregables.
-* Control de calidad.
-* Coordinación con clientes.
-* Apoyo a fabricación y montaje.
-* Gestión de plazos.
+**Objetos interactivos:**
+- Estación de trabajo principal → Software nivel avanzado
+- Monitor secundario → Software nivel intermedio
+- Pantalla de simulación → Análisis FEA/CFD
+- Rack de herramientas → Software complementario
 
-## Zona 4 — Línea de transmisión eléctrica
+**Contenido confirmado:**
+- Avanzado: SolidWorks, AutoCAD, Autodesk Inventor, Fusion 360
+- Intermedio: SketchUp, 3ds Max, Revit
+- Análisis: SolidWorks Simulation, ANSYS, SAP2000
+- Otros: MATLAB, Python (básico), Microsoft 365, Cisco
 
-Objetos:
+---
 
-* Torre eléctrica 3D.
-* Cables.
-* Terreno.
-* Placa técnica.
+### Módulo 04 — Mission Archive [MVP]
 
-Contenido:
+**Posición en escena:** abajo del strut vertical
+**Cámara preset:** position(-0.5, -5.5, 8) → lookAt(-0.4, -2.3, 0)
 
-* Diseño de líneas de transmisión eléctrica.
-* Diseño asociado a estructuras.
-* Criterios técnicos.
-* Coordinación eléctrica/civil.
-* Aplicación de normativas.
-* Diseño de fundaciones para torres.
-* Documentación técnica.
+**Objetos interactivos:**
+- Panel Presa Montegrande → [DATOS PENDIENTES]
+- Panel Presa Yacahueque → [DATOS PENDIENTES]
+- Panel Parque Fotovoltaico Bayasol → [DATOS PENDIENTES]
 
-## Zona 5 — Fundaciones
+**Estructura de datos de cada proyecto (pendiente de llenado):**
 
-Objetos:
+```txt
+- Nombre del proyecto
+- Tipo (presa / fotovoltaico / otro)
+- Rol exacto de Luis Abel
+- Responsabilidades específicas
+- Herramientas utilizadas
+- Entregables producidos
+- Resultados (si pueden mencionarse)
+- Imágenes o renders disponibles
+- Restricciones de confidencialidad
+```
 
-* Maqueta de zapata.
-* Pilote.
-* Base de torre.
-* Corte de terreno.
-* Armadura de acero.
+<!-- DATOS_PENDIENTES: Solo Luis Abel puede completar este módulo -->
 
-Contenido:
+---
 
-* Diseño de fundaciones.
-* Normativas nacionales.
-* Criterios constructivos.
-* Revisión de planos.
-* Coordinación con obra.
-* Documentación para fabricación/construcción.
+### Módulo 05 — Communications Console [MVP]
 
-## Zona 6 — Pared de proyectos
+**Posición en escena:** derecha-abajo del truss
+**Cámara preset:** position(5, -3, 8) → lookAt(2.0, -1.6, 0.3)
 
-Objetos:
+**Objetos interactivos:**
+- Terminal email → mailto link [DATO PENDIENTE]
+- Panel LinkedIn → URL del perfil [DATO PENDIENTE]
+- Botón WhatsApp → Enlace con mensaje predefinido [DATO PENDIENTE]
+- Consola de CV → Descarga directa del PDF
 
-* Tres cuadros.
-* Tres maquetas.
-* Miniaturas de proyectos.
+<!-- DATOS_PENDIENTES: Email, LinkedIn URL, WhatsApp. Solo Luis Abel. -->
 
-Proyectos iniciales:
+---
 
-* Presa Montegrande.
-* Presa Yacahueque.
-* Parque Fotovoltaico Bayasol.
+## MÓDULOS FASE 2 (post-MVP)
 
-Cada proyecto debe tener:
+### Módulo 06 — Power & Transmission Module [Fase 2]
 
-* Nombre.
-* Tipo de proyecto.
-* Rol.
-* Responsabilidades.
-* Herramientas usadas.
-* Entregables.
-* Galería.
-* Nota de confidencialidad si aplica.
+**Contenido planificado:**
+Líneas de transmisión eléctrica, fundaciones, diseño estructural,
+infraestructura energética, normas AISC y AWS en contexto.
 
-## Zona 7 — Laboratorio de simulación
+---
 
-Objetos:
+### Módulo 07 — Simulation Lab [Fase 2]
 
-* Pantalla con malla FEA.
-* Gráfico de esfuerzos.
-* Representación de flujo CFD.
-* Pieza mecánica.
-* Panel técnico.
+**Contenido planificado:**
+FEA/CFD en profundidad, análisis estructural, sísmico, térmico y dinámico.
+SAP2000, ANSYS, SolidWorks Simulation. Metodologías de cálculo.
 
-Contenido:
+---
 
-* SolidWorks Simulation.
-* ANSYS.
-* SAP2000.
-* FEA.
-* CFD.
-* Análisis estructural.
-* Análisis térmico.
-* Análisis dinámico.
-* Análisis sísmico.
-* Vibración.
-* Fatiga.
-* Seguridad.
+### Módulo 08 — Data Vault — Certificaciones [Fase 2]
 
-## Zona 8 — Biblioteca de normas
+**Contenido planificado:**
+Certificaciones: Dassault Systèmes, Autodesk, MATLAB, Python (Cisco),
+Microsoft Office Specialist. Idiomas. Formación continua.
 
-Objetos:
+---
 
-* Librero.
-* Carpetas.
-* Manuales técnicos.
-* Etiquetas de normas.
+## Elementos de Fase 2 transversales
 
-Contenido:
-
-* AWS.
-* ASME.
-* ISO.
-* ASTM.
-* Normas de construcción.
-* Normas de líneas de transmisión.
-* Normativas nacionales.
-* Fundaciones civiles.
-
-## Zona 9 — Certificaciones
-
-Objetos:
-
-* Diplomas.
-* Certificados en pared.
-* Medallas o insignias.
-
-Contenido:
-
-* Dassault Systèmes Certification — Mechanical Design.
-* Autodesk Essentials.
-* MATLAB Essentials.
-* Python Essentials — Cisco.
-* Microsoft Office Specialist.
-* Inglés — Instituto de Idiomas UASD.
-
-## Zona 10 — Contacto
-
-Objetos:
-
-* Teléfono.
-* Tarjeta.
-* Código QR.
-* Laptop.
-* Sobre de correo.
-
-Contenido:
-
-* Email.
-* Teléfono.
-* LinkedIn.
-* Portafolio.
-* Descargar CV.
-* Contactar por WhatsApp.
+| Elemento | Descripción |
+|---|---|
+| Partículas | Polvo lunar, efectos atmosféricos, ambiance |
+| Avatar animado | Luis Abel como astronauta guía de la estación |
+| Audio | Ambiance espacial, sonidos de UI, audio posicional |
+| Órbita libre | Exploración WASD + mouse por la estación |
+| Animación de entrada | Secuencia de acercamiento al airlock |
