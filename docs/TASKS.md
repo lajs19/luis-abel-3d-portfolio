@@ -2,24 +2,45 @@
 
 ## Fase 0 — Preparación
 
-* [ ] Crear repositorio en GitHub.
-* [ ] Agregar README.md.
-* [ ] Agregar AGENTS.md.
-* [ ] Agregar CLAUDE.md.
-* [ ] Agregar GEMINI.md.
-* [ ] Agregar CODEX.md.
-* [ ] Crear carpeta docs.
-* [ ] Agregar AI_CONTEXT.md.
-* [ ] Agregar PROJECT_BRIEF.md.
-* [ ] Agregar SCENE_MAP.md.
-* [ ] Agregar CONTENT_STRATEGY.md.
-* [ ] Agregar ROADMAP.md.
-* [ ] Agregar DESIGN_SYSTEM.md.
-* [ ] Agregar TECH_STACK.md.
-* [ ] Agregar QA_CHECKLIST.md.
-* [ ] Agregar ASSET_GUIDELINES.md.
-* [ ] Agregar ERROR_LOG.md.
-* [ ] Agregar DECISIONS.md.
+* [x] Crear repositorio en GitHub.
+* [x] Agregar README.md.
+* [x] Agregar AGENTS.md.
+* [x] Agregar CLAUDE.md.
+* [x] Agregar GEMINI.md.
+* [x] Agregar CODEX.md.
+* [x] Crear carpeta docs.
+* [x] Agregar AI_CONTEXT.md.
+* [x] Agregar PROJECT_BRIEF.md.
+* [x] Agregar SCENE_MAP.md.
+* [x] Agregar CONTENT_STRATEGY.md.
+* [x] Agregar ROADMAP.md.
+* [x] Agregar DESIGN_SYSTEM.md.
+* [x] Agregar TECH_STACK.md.
+* [x] Agregar QA_CHECKLIST.md.
+* [x] Agregar ASSET_GUIDELINES.md.
+* [x] Agregar ERROR_LOG.md.
+* [x] Agregar DECISIONS.md.
+* [x] Agregar MVP_SCOPE.md.
+* [x] Agregar NAVIGATION_DESIGN.md.
+* [x] Agregar COPY_DECK.md.
+* [x] Agregar PROJECT_DATA.md.
+
+## Fase 0.5 — Cierre de especificación antes de programar
+
+* [x] Definir título oficial del sitio.
+* [x] Definir navegación inicial del MVP.
+* [x] Definir alcance exacto del MVP.
+* [x] Crear copy inicial para Zona 1.
+* [x] Crear copy inicial para Zona 2.
+* [x] Crear copy inicial para Zona 6.
+* [x] Crear copy inicial para Zona 10.
+* [ ] Completar datos reales de Presa Montegrande.
+* [ ] Completar datos reales de Presa Yacahueque.
+* [ ] Completar datos reales de Parque Fotovoltaico Bayasol.
+* [ ] Confirmar email público.
+* [ ] Confirmar URL de LinkedIn.
+* [ ] Confirmar archivo final del CV PDF.
+* [ ] Confirmar foto profesional final.
 
 ## Fase 1 — Setup técnico
 

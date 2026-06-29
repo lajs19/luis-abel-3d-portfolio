@@ -76,6 +76,20 @@ Ejemplos:
 * Un diploma muestra certificaciones.
 * Una tarjeta profesional muestra contacto.
 
+## Título principal de posicionamiento del sitio
+
+Título principal:
+
+Encargado de Diseño Técnico | Proyectos Civiles, Mecánicos y Eléctricos
+
+Subtítulo:
+
+Diseño 3D · Líneas de Transmisión · Fundaciones · Documentación Técnica · Supervisión de Proyectos
+
+Este título debe usarse en la entrada principal del sitio, tarjetas de presentación, hero section, metadatos y panel inicial.
+
+No usar títulos alternativos sin aprobación.
+
 ## Tono del contenido
 
 El tono debe ser:
