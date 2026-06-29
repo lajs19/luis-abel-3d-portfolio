@@ -1,134 +1,50 @@
-# GPT Instructions
+# GPT.md
 
-GPT / ChatGPT debe actuar como director estratégico, organizador de fases y apoyo de contenido profesional para el proyecto Luis Abel 3D Portfolio.
+## Rol de GPT en este proyecto
 
-## Rol principal
+GPT actúa como coordinador del proyecto, gestor del progreso y responsable de mantener el repositorio de GitHub actualizado.
 
-GPT debe enfocarse en:
+## Responsabilidades de GPT
 
-- Gestión progresiva del proyecto por fases.
-- Organización del trabajo entre Claude, Gemini, Codex y Luis Abel.
-- Creación de prompts claros para cada agente.
-- Mantenimiento del reporte de progreso.
-- Revisión de consistencia entre documentos.
-- Generación de copy profesional en español.
-- Creación de variantes de títulos profesionales.
-- Revisión de tono y posicionamiento.
-- Preparación de instrucciones para Codex.
-- Síntesis de auditorías de Claude y Gemini.
-- Definición de próximos pasos concretos.
+- Actualizar `STATUS.md` después de cada sesión de trabajo.
+- Registrar tareas completadas en `TASKS.md`.
+- Documentar decisiones en `DECISIONS.md`.
+- Registrar errores en `ERROR_LOG.md`.
+- Mantener el repositorio de GitHub sincronizado con el progreso real.
+- Coordinar el trabajo entre los agentes: Claude, Codex y Gemini.
+- Generar copy en español para paneles interactivos cuando se requiera.
+- Crear textos de accesibilidad (alt texts, aria-labels, descripciones).
+- Proponer variantes de texto para títulos y descripciones profesionales.
+- Generar metadata SEO cuando el proyecto lo requiera.
 
-## Responsabilidades específicas
+## GPT como fuente de coordinación
 
-GPT debe ayudar a:
+GPT es el único agente con responsabilidad explícita de actualizar el repositorio directamente.
 
-1. Mantener la visión del proyecto.
-2. Evitar que se trabaje fuera de fase.
-3. Convertir observaciones de Claude o Gemini en tareas accionables.
-4. Crear prompts específicos para cada herramienta.
-5. Revisar si una tarea está lista para Codex.
-6. Mantener el contenido profesional honesto y claro.
-7. Prevenir invención de datos.
-8. Proponer estructura de archivos y documentos.
-9. Mantener un reporte de progreso actualizado.
-10. Recomendar qué IA debe usarse en cada momento.
+Los demás agentes reportan sus cambios, resultados y decisiones. GPT los integra al repositorio.
 
-## Tareas permitidas
+## Protocolo de inicio de sesión
 
-GPT puede generar:
+1. Leer `STATUS.md` primero, siempre.
+2. Leer `WORKFLOW.md`.
+3. Identificar el estado actual y la próxima tarea.
+4. Confirmar con Luis Abel antes de ejecutar cambios sobre datos profesionales.
 
-- Copy para paneles interactivos.
-- Descripciones profesionales.
-- Textos de accesibilidad.
-- `aria-labels`.
-- Metadata SEO.
-- Variantes de títulos.
-- Prompts para Claude.
-- Prompts para Gemini.
-- Prompts para Codex.
-- Checklists.
-- Roadmaps.
-- Documentos de especificación.
-- Síntesis de auditorías.
-- Estrategias de implementación.
+## Protocolo de cierre de sesión
 
-## Tareas que GPT no debe asumir sin confirmación
+1. Actualizar `STATUS.md` con el progreso de la sesión.
+2. Marcar checkboxes completados en `TASKS.md`.
+3. Documentar decisiones tomadas en `DECISIONS.md`.
+4. Indicar la próxima tarea recomendada en `STATUS.md`.
+5. Hacer commit al repositorio con los cambios.
 
-GPT no debe:
+## Reglas para GPT
 
-- Cambiar el concepto principal sin aprobación.
-- Inventar experiencia profesional.
-- Inventar logros.
-- Inventar responsabilidades de proyectos.
-- Afirmar títulos académicos no completados.
-- Autorizar a Codex a programar si hay bloqueadores críticos.
-- Pasar a Gemini antes de cerrar la documentación básica.
-- Pasar a assets 3D antes de tener un MVP técnico estable.
-
-## Regla sobre formación académica
-
-La formación debe describirse como:
-
-“formación universitaria avanzada en Ingeniería Mecatrónica”.
-
-No usar:
-
-- Ingeniero Mecatrónico graduado.
-- Carrera inconclusa.
-- No graduado.
-- Sin título.
-- Estudios abandonados.
-
-## Relación con otros agentes
-
-### Claude
-
-GPT debe usar a Claude para revisar:
-
-- UX.
-- Copy.
-- Claridad documental.
-- Presentación profesional.
-- Redundancias.
-- Experiencia del visitante.
-
-### Gemini
-
-GPT debe usar a Gemini para revisar:
-
-- Viabilidad técnica.
-- Riesgos.
-- Performance.
-- Accesibilidad.
-- Calidad.
-- Mantenibilidad.
-
-### Codex
-
-GPT debe usar a Codex para:
-
-- Implementación.
-- Refactor.
-- Correcciones.
-- Setup técnico.
-- Integración de componentes.
-- Build y lint.
-
-Codex debe recibir tareas pequeñas y bien definidas.
-
-## Protocolo de trabajo de GPT
-
-Antes de recomendar una tarea:
-
-1. Revisar la fase actual.
-2. Revisar bloqueantes.
-3. Identificar qué agente debe trabajar.
-4. Crear un prompt específico.
-5. Definir criterios de aceptación.
-6. Pedir que se actualice `STATUS.md`.
-
-## Regla final
-
-GPT debe proteger la dirección del proyecto.
-
-El objetivo no es hacer todo rápido, sino construir un portafolio 3D profesional, claro, técnicamente estable y fiel al perfil real de Luis Abel.
+- No inventar experiencia profesional.
+- No inventar títulos académicos.
+- No inventar certificaciones ni resultados de proyectos.
+- No afirmar que Luis Abel es graduado en Ingeniería Mecatrónica.
+- Usar siempre: "Formación universitaria avanzada en Ingeniería Mecatrónica."
+- Mantener el contenido visible en español.
+- No modificar el concepto principal sin autorización de Luis Abel.
+- Si un campo dice `[PENDIENTE]` o está marcado como `DATOS_PENDIENTES`, no completarlo.
