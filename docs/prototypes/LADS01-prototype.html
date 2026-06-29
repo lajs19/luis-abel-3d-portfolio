@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LADS-01 — Luis Abel Lunar Design Lab</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { background: #12141A; overflow: hidden; font-family: 'Space Grotesk', sans-serif; color: #E8ECF4; }
+
+    #canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: block; }
+
+    /* ── LOADING ─────────────────────────── */
+    #loading {
+      position: fixed; inset: 0; background: #12141A;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 100; transition: opacity 0.9s ease;
+    }
+    #loading.out { opacity: 0; pointer-events: none; }
+    .ld-id  { font-family:'JetBrains Mono',monospace; font-size:11px; color:#00C8FF; letter-spacing:.1em; margin-bottom:20px; }
+    .ld-track { width:220px; height:1px; background:#2E3340; }
+    .ld-bar   { height:1px; background:#00C8FF; width:0%; transition:width 2s ease; }
+    .ld-sub   { font-family:'JetBrains Mono',monospace; font-size:9px; color:#3D4556; margin-top:10px; letter-spacing:.06em; }
+
+    /* ── ENTRY SCREEN ────────────────────── */
+    #entry {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease; pointer-events: none; opacity: 0;
+    }
+    #entry.ready   { pointer-events: all; opacity: 1; }
+    #entry.leaving { opacity: 0; pointer-events: none; }
+    .en-status { font-family:'JetBrains Mono',monospace; font-size:10px; color:#00C8FF; letter-spacing:.1em; margin-bottom:14px; }
+    .en-name   { font-size: clamp(22px,4vw,36px); font-weight:600; color:#E8ECF4; letter-spacing:-.02em; text-align:center; }
+    .en-t1     { font-size:clamp(11px,1.5vw,15px); font-weight:500; color:#B8C4D4; margin-top:7px; text-align:center; }
+    .en-t2     { font-size:clamp(10px,1.3vw,13px); color:#8896AB; margin-top:3px; text-align:center; }
+    .en-cta {
+      margin-top: 30px; background: transparent;
+      border: 1px solid #00C8FF; color: #00C8FF;
+      font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:500;
+      padding: 11px 30px; border-radius: 4px; letter-spacing:.08em;
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .en-cta:hover { background:#00C8FF; color:#12141A; }
+    .en-hint { font-family:'JetBrains Mono',monospace; font-size:9px; color:#3D4556; margin-top:12px; letter-spacing:.04em; }
+
+    /* ── TOP BAR ─────────────────────────── */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; height: 42px;
+      background: rgba(18,20,26,.94); border-bottom:.5px solid #2E3340;
+      display: flex; align-items: center; padding: 0 20px;
+      z-index: 20; opacity: 0; transition: opacity .5s ease; pointer-events:none;
+    }
+    #topbar.show { opacity:1; pointer-events:all; }
+    .tb-id   { font-family:'JetBrains Mono',monospace; font-size:10px; color:#00C8FF; letter-spacing:.08em; }
+    .tb-sep  { width:.5px; height:14px; background:#2E3340; margin:0 12px; }
+    .tb-name { font-size:13px; font-weight:500; color:#8896AB; }
+    .tb-cv {
+      margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px;
+      color:#F5A623; border:.5px solid #F5A623; padding:5px 14px;
+      border-radius:3px; cursor:pointer; background:transparent; transition:background .2s;
+    }
+    .tb-cv:hover { background:rgba(245,166,35,.1); }
+
+    /* ── BOTTOM NAV ──────────────────────── */
+    #botnav {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+      background: rgba(18,20,26,.96); border-top:.5px solid #2E3340;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      z-index: 20; opacity: 0; transition: opacity .5s ease; pointer-events:none;
+    }
+    #botnav.show { opacity:1; pointer-events:all; }
+    .nb {
+      font-family:'JetBrains Mono',monospace; font-size:10px; color:#3D4556;
+      border:.5px solid #2E3340; padding:6px 14px; border-radius:3px;
+      cursor:pointer; background:transparent; transition:all .2s; white-space:nowrap; letter-spacing:.03em;
+    }
+    .nb:hover { color:#B8C4D4; border-color:#3D4556; }
+    .nb.on    { color:#00C8FF; border-color:rgba(0,200,255,.4); background:rgba(0,200,255,.06); }
+
+    /* ── HUD PANEL ───────────────────────── */
+    #hud {
+      position: fixed; top: 42px; right: 0; bottom: 52px; width: 340px;
+      background: rgba(28,31,38,.97); border-left:1px solid rgba(0,200,255,.28);
+      z-index: 30; transform: translateX(100%); transition: transform .3s ease-out;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    #hud.open { transform: translateX(0); }
+    #hud::before {
+      content:''; position:absolute; top:-1px; left:-1px; width:8px; height:8px;
+      border-top:1px solid rgba(0,200,255,.6); border-left:1px solid rgba(0,200,255,.6);
+    }
+    #hud::after {
+      content:''; position:absolute; bottom:-1px; left:-1px; width:8px; height:8px;
+      border-bottom:1px solid rgba(0,200,255,.6); border-left:1px solid rgba(0,200,255,.6);
+    }
+    .hd-head {
+      padding:13px 16px; border-bottom:.5px solid rgba(0,200,255,.18);
+      display:flex; align-items:center; gap:8px; flex-shrink:0;
+    }
+    .hd-tag {
+      font-family:'JetBrains Mono',monospace; font-size:9px; color:#00C8FF;
+      background:rgba(0,200,255,.1); padding:2px 8px; border-radius:3px;
+      border:.5px solid rgba(0,200,255,.3); letter-spacing:.06em;
+    }
+    .hd-mname { font-size:12px; font-weight:500; color:#B8C4D4; flex:1; }
+    .hd-x { color:#3D4556; cursor:pointer; font-size:17px; transition:color .2s; padding:0 2px; }
+    .hd-x:hover { color:#E8ECF4; }
+
+    .hd-body { padding:16px; flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#2E3340 transparent; }
+    .hd-body::-webkit-scrollbar { width:3px; }
+    .hd-body::-webkit-scrollbar-thumb { background:#2E3340; border-radius:2px; }
+
+    .hd-title    { font-size:19px; font-weight:600; color:#E8ECF4; letter-spacing:-.01em; margin-bottom:3px; }
+    .hd-sub      { font-size:12px; font-weight:500; color:#B8C4D4; margin-bottom:14px; }
+    .hd-div      { height:.5px; background:rgba(0,200,255,.15); margin:11px 0; }
+    .hd-text     { font-family:'Inter',sans-serif; font-size:12px; color:#8896AB; line-height:1.7; margin-bottom:11px; }
+    .hd-stitle   { font-size:10px; font-weight:500; color:#B8C4D4; letter-spacing:.05em; text-transform:uppercase; margin:12px 0 6px; }
+    .hd-tags     { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+    .hd-tag-item {
+      font-family:'JetBrains Mono',monospace; font-size:9px; color:#00C8FF;
+      background:rgba(0,200,255,.07); padding:3px 8px; border-radius:3px;
+      border:.5px solid rgba(0,200,255,.22); letter-spacing:.03em;
+    }
+    .hd-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:.5px solid rgba(255,255,255,.04); }
+    .hd-row:last-child { border-bottom:none; }
+    .hd-k { font-family:'JetBrains Mono',monospace; font-size:10px; color:#3D4556; }
+    .hd-v { font-family:'JetBrains Mono',monospace; font-size:10px; color:#B8C4D4; }
+    .hd-pending { color:#F5A623; }
+
+    .hd-foot { padding:12px 16px; border-top:.5px solid rgba(0,200,255,.15); flex-shrink:0; }
+    .hd-cta {
+      width:100%; background:transparent; border:.5px solid #00C8FF; color:#00C8FF;
+      font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:500;
+      padding:9px; border-radius:4px; cursor:pointer; letter-spacing:.04em; transition:background .2s;
+    }
+    .hd-cta:hover { background:rgba(0,200,255,.1); }
+
+    /* ── MODULE TOOLTIP ──────────────────── */
+    #tooltip {
+      position:fixed; background:rgba(28,31,38,.95); border:.5px solid rgba(0,200,255,.4);
+      font-family:'JetBrains Mono',monospace; font-size:9px; color:#00C8FF;
+      padding:4px 10px; border-radius:3px; pointer-events:none; z-index:40;
+      opacity:0; transition:opacity .15s; letter-spacing:.06em;
+    }
+    #tooltip.show { opacity:1; }
+
+    /* ── DIMMER ──────────────────────────── */
+    #dimmer {
+      position:fixed; inset:0; background:rgba(0,0,0,0); z-index:5;
+      pointer-events:none; transition:background .3s ease;
+    }
+    #dimmer.on { background:rgba(0,0,0,.35); pointer-events:all; }
+
+    /* ── MOBILE ──────────────────────────── */
+    @media (max-width: 768px) {
+      #hud { width:100%; top:42px; }
+      .nb  { font-size:9px; padding:5px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<!-- Loading -->
+<div id="loading">
+  <div class="ld-id">LADS-01 // INITIALIZING SYSTEMS</div>
+  <div class="ld-track"><div class="ld-bar" id="ldbar"></div></div>
+  <div class="ld-sub" id="ldsub">LOADING LUNAR DESIGN STATION...</div>
+</div>
+
+<!-- Dimmer -->
+<div id="dimmer" onclick="closePanel()"></div>
+
+<!-- Entry Screen -->
+<div id="entry">
+  <div class="en-status">LADS-01 // OPERATIONAL // LUNA ORBIT</div>
+  <div class="en-name">Luis Abel Javier de los Santos</div>
+  <div class="en-t1">Especialista en Diseño Técnico y Simulación FEA/CFD</div>
+  <div class="en-t2">Supervisión y Coordinación de Proyectos de Ingeniería</div>
+  <button class="en-cta" onclick="enterStation()">⟶ INGRESAR A LA ESTACIÓN</button>
+  <div class="en-hint">5 módulos · navega con los controles inferiores</div>
+</div>
+
+<!-- Top Bar -->
+<div id="topbar">
+  <span class="tb-id">LADS-01</span>
+  <div class="tb-sep"></div>
+  <span class="tb-name">Luis Abel Lunar Design Lab</span>
+  <button class="tb-cv" onclick="handleCV()">↓ DESCARGAR CV</button>
+</div>
+
+<!-- Bottom Nav -->
+<div id="botnav">
+  <button class="nb on"  data-mod="01" onclick="navTo('01')">01 AIRLOCK</button>
+  <button class="nb"     data-mod="02" onclick="navTo('02')">02 MISSION TABLE</button>
+  <button class="nb"     data-mod="03" onclick="navTo('03')">03 CAD BAY</button>
+  <button class="nb"     data-mod="04" onclick="navTo('04')">04 ARCHIVE</button>
+  <button class="nb"     data-mod="05" onclick="navTo('05')">05 COMMS</button>
+</div>
+
+<!-- HUD Panel -->
+<div id="hud">
+  <div class="hd-head">
+    <span class="hd-tag"  id="p-tag">MOD. 01</span>
+    <span class="hd-mname" id="p-mname">Airlock</span>
+    <span class="hd-x" onclick="closePanel()">✕</span>
+  </div>
+  <div class="hd-body" id="p-body"></div>
+  <div class="hd-foot"><button class="hd-cta" id="p-cta">—</button></div>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// CONTENT DATABASE
+// ═══════════════════════════════════════════════
+const MODULES = {
+  '01': {
+    tag:'MOD. 01', mname:'Airlock — Entrada',
+    title:'Luis Abel J. de los Santos', sub:'Bienvenido a LADS-01',
+    cta:'↓ DESCARGAR CV',
+    html:`
+      <p class="hd-text">Especialista en diseño técnico y simulación FEA/CFD con más de 4 años de experiencia en proyectos de ingeniería civil, mecánica y eléctrica en SERVINCA.</p>
+      <div class="hd-div"></div>
+      <div class="hd-row"><span class="hd-k">EMPRESA</span><span class="hd-v">SERVINCA</span></div>
+      <div class="hd-row"><span class="hd-k">ÁREA</span><span class="hd-v">Taller de Hidromecánica</span></div>
+      <div class="hd-row"><span class="hd-k">CARGO</span><span class="hd-v">Encargado de Diseño</span></div>
+      <div class="hd-row"><span class="hd-k">DESDE</span><span class="hd-v">Oct. 2021</span></div>
+      <div class="hd-row"><span class="hd-k">FORMACIÓN</span><span class="hd-v">Ing. Mecatrónica (avanzada)</span></div>
+      <div class="hd-div"></div>
+      <p class="hd-text">Explora los módulos de esta estación para conocer mi perfil completo, proyectos y formas de contacto.</p>`
+  },
+  '02': {
+    tag:'MOD. 02', mname:'Holographic Mission Table',
+    title:'Perfil Profesional', sub:'Especialidades y formación',
+    cta:'VER SOFTWARE →',
+    html:`
+      <p class="hd-text">Formación universitaria avanzada en Ingeniería Mecatrónica con especialización práctica en diseño técnico, simulación numérica y supervisión de proyectos de infraestructura.</p>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Áreas de especialidad</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">DISEÑO MECÁNICO</span>
+        <span class="hd-tag-item">FEA / CFD</span>
+        <span class="hd-tag-item">LÍNEAS DE TRANSMISIÓN</span>
+        <span class="hd-tag-item">FUNDACIONES</span>
+        <span class="hd-tag-item">DOCUMENTACIÓN TÉCNICA</span>
+        <span class="hd-tag-item">SUPERVISIÓN</span>
+      </div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Habilidades de gestión</p>
+      <p class="hd-text">Liderazgo técnico de equipos, coordinación de subcontratistas, trato directo con clientes, resolución de problemas en campo y gestión de proyectos multidisciplinarios.</p>
+      <div class="hd-div"></div>
+      <div class="hd-row"><span class="hd-k">IDIOMAS</span><span class="hd-v">Español · Inglés (intermedio)</span></div>
+      <div class="hd-row"><span class="hd-k">NORMAS</span><span class="hd-v">AWS · ASME · AISC · ASTM</span></div>`
+  },
+  '03': {
+    tag:'MOD. 03', mname:'CAD Engineering Bay',
+    title:'Diseño CAD y Simulación', sub:'Software · herramientas técnicas',
+    cta:'VER PROYECTOS →',
+    html:`
+      <p class="hd-stitle">Software nivel avanzado</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">SOLIDWORKS</span>
+        <span class="hd-tag-item">AUTOCAD</span>
+        <span class="hd-tag-item">AUTODESK INVENTOR</span>
+        <span class="hd-tag-item">FUSION 360</span>
+      </div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Modelado y visualización</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">SKETCHUP</span>
+        <span class="hd-tag-item">3DS MAX</span>
+        <span class="hd-tag-item">REVIT</span>
+      </div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Análisis y simulación</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">SW SIMULATION</span>
+        <span class="hd-tag-item">ANSYS</span>
+        <span class="hd-tag-item">SAP2000</span>
+        <span class="hd-tag-item">FEA / CFD</span>
+      </div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Otras herramientas</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">MATLAB</span>
+        <span class="hd-tag-item">PYTHON</span>
+        <span class="hd-tag-item">MICROSOFT 365</span>
+        <span class="hd-tag-item">CISCO (REDES)</span>
+      </div>`
+  },
+  '04': {
+    tag:'MOD. 04', mname:'Mission Archive',
+    title:'Proyectos de Ingeniería', sub:'Archivo de misiones confirmadas',
+    cta:'CONTACTAR →',
+    html:`
+      <p class="hd-text">Proyectos ejecutados en SERVINCA. Los datos completos de cada proyecto están en proceso de clasificación.</p>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Presa Montegrande</p>
+      <div class="hd-row"><span class="hd-k">TIPO</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ROL</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ESTADO</span><span class="hd-v" style="color:#F5A623">ARCHIVO CLASIFICADO</span></div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Presa Yacahueque</p>
+      <div class="hd-row"><span class="hd-k">TIPO</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ROL</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ESTADO</span><span class="hd-v" style="color:#F5A623">ARCHIVO CLASIFICADO</span></div>
+      <div class="hd-div"></div>
+      <p class="hd-stitle">Parque Fotovoltaico Bayasol</p>
+      <div class="hd-row"><span class="hd-k">TIPO</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ROL</span><span class="hd-v hd-pending">[DATOS PENDIENTES]</span></div>
+      <div class="hd-row"><span class="hd-k">ESTADO</span><span class="hd-v" style="color:#F5A623">ARCHIVO CLASIFICADO</span></div>`
+  },
+  '05': {
+    tag:'MOD. 05', mname:'Communications Console',
+    title:'Contacto', sub:'Canales de comunicación activos',
+    cta:'↓ DESCARGAR CV',
+    html:`
+      <div class="hd-row"><span class="hd-k">EMAIL</span><span class="hd-v hd-pending">[PENDIENTE]</span></div>
+      <div class="hd-row"><span class="hd-k">LINKEDIN</span><span class="hd-v hd-pending">[PENDIENTE]</span></div>
+      <div class="hd-row"><span class="hd-k">WHATSAPP</span><span class="hd-v hd-pending">[PENDIENTE]</span></div>
+      <div class="hd-row"><span class="hd-k">UBICACIÓN</span><span class="hd-v">República Dominicana</span></div>
+      <div class="hd-div"></div>
+      <p class="hd-text">CV disponible para descarga inmediata. Disponible para proyectos de ingeniería, consultoría técnica y colaboración profesional.</p>
+      <div class="hd-tags">
+        <span class="hd-tag-item">DISEÑO TÉCNICO</span>
+        <span class="hd-tag-item">PROYECTOS</span>
+        <span class="hd-tag-item">CONSULTORÍA</span>
+        <span class="hd-tag-item">TIEMPO COMPLETO</span>
+      </div>
+      <div class="hd-div"></div>
+      <p class="hd-text" style="color:#F5A623;font-family:'JetBrains Mono',monospace;font-size:10px;">DATOS DE CONTACTO PENDIENTES DE CONFIGURACIÓN</p>`
+  }
+};
+
+// ═══════════════════════════════════════════════
+// THREE.JS SETUP
+// ═══════════════════════════════════════════════
+const canvas  = document.getElementById('canvas');
+let W = window.innerWidth, H = window.innerHeight;
+
+const scene    = new THREE.Scene();
+scene.background = new THREE.Color('#12141A');
+scene.fog        = new THREE.Fog('#12141A', 35, 90);
+
+const camera = new THREE.PerspectiveCamera(52, W/H, 0.1, 500);
+camera.position.set(0, 2, 15);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.85;
+
+// ── LIGHTING ──────────────────────────────────
+scene.add(new THREE.AmbientLight('#1E2A38', 1.2));
+
+const sun = new THREE.DirectionalLight('#C8D8E8', 2.8);
+sun.position.set(12, 9, 6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 0.1;
+sun.shadow.camera.far  = 80;
+sun.shadow.camera.left = -15;
+sun.shadow.camera.right = 15;
+sun.shadow.camera.top  = 10;
+sun.shadow.camera.bottom = -10;
+scene.add(sun);
+
+const rim = new THREE.DirectionalLight('#1B4A8A', 0.6);
+rim.position.set(-10, -4, -8);
+scene.add(rim);
+
+const hud_light = new THREE.PointLight('#00C8FF', 0.4, 18);
+hud_light.position.set(0, 3, 4);
+scene.add(hud_light);
+
+// ── STARS ─────────────────────────────────────
+(function createStars() {
+  const geo = new THREE.BufferGeometry();
+  const n = 2200;
+  const pos = new Float32Array(n * 3);
+  for (let i = 0; i < n * 3; i++) pos[i] = (Math.random() - 0.5) * 240;
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const mat = new THREE.PointsMaterial({ color:'#ffffff', size:0.11, sizeAttenuation:true, transparent:true, opacity:0.85 });
+  scene.add(new THREE.Points(geo, mat));
+})();
+
+// ── MOON SURFACE ──────────────────────────────
+(function createMoon() {
+  const geo = new THREE.PlaneGeometry(120, 120, 24, 24);
+  const pa = geo.attributes.position;
+  for (let i = 0; i < pa.count; i++) {
+    if (Math.abs(pa.getX(i)) < 55 && Math.abs(pa.getZ(i)) < 55)
+      pa.setY(i, (Math.random() - 0.5) * 0.25);
+  }
+  geo.computeVertexNormals();
+  const mat = new THREE.MeshStandardMaterial({ color:'#191B20', roughness:1.0, metalness:0 });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.rotation.x = -Math.PI / 2;
+  mesh.position.y  = -7.5;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+})();
+
+// ── STATION ───────────────────────────────────
+const station = new THREE.Group();
+const interactiveObjects = [];
+
+const MAT = {
+  hull:  new THREE.MeshStandardMaterial({ color:'#2A2E3A', metalness:.82, roughness:.18 }),
+  panel: new THREE.MeshStandardMaterial({ color:'#1A1D24', metalness:.9,  roughness:.12 }),
+  light: new THREE.MeshStandardMaterial({ color:'#3A4055', metalness:.7,  roughness:.25 }),
+  solar: new THREE.MeshStandardMaterial({ color:'#0C1626', metalness:.45, roughness:.9  }),
+  frame: new THREE.MeshStandardMaterial({ color:'#A8B4C4', metalness:.9,  roughness:.1  }),
+};
+
+function box(w,h,d,mat){ return new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat.clone()); }
+
+// Central truss
+const truss = box(10, 0.22, 0.22, MAT.light);
+truss.rotation.z = Math.PI / 2;
+truss.castShadow = true;
+station.add(truss);
+
+// Vertical strut
+const vstrut = box(0.18, 4.5, 0.18, MAT.light);
+station.add(vstrut);
+
+// ── MODULE FACTORY ────────────────────────────
+function makeModule(id, w, h, d, pos) {
+  const g = new THREE.Group();
+
+  const body = box(w, h, d, MAT.hull);
+  body.castShadow = true;
+  body.receiveShadow = true;
+  body.userData = { modId: id, isInteractive: true };
+  g.add(body);
+
+  // Front face detail panel
+  const fp = box(w * 0.55, h * 0.38, 0.06, MAT.panel);
+  fp.position.z = d / 2 + 0.04;
+  fp.userData = { modId: id, isInteractive: true };
+  g.add(fp);
+
+  // Corner highlight strips
+  [-1,1].forEach(sx => [-1,1].forEach(sy => {
+    const s = box(0.06, h + 0.04, 0.06, MAT.frame);
+    s.position.x = sx * (w/2 + 0.02);
+    s.position.y = sy * 0;
+    g.add(s);
+  }));
+
+  // Circular port (front)
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(0.18, 0.025, 8, 20),
+    MAT.frame.clone()
+  );
+  ring.position.z = d / 2 + 0.01;
+  ring.userData = { modId: id, isInteractive: true };
+  g.add(ring);
+
+  g.position.set(...pos);
+  station.add(g);
+
+  // Register all interactive children
+  g.traverse(c => { if (c.isMesh && c.userData.isInteractive) interactiveObjects.push(c); });
+
+  return g;
+}
+
+makeModule('01', 1.8, 1.35, 1.45, [ 3.5,  0.0,  0.5]); // Airlock
+makeModule('02', 1.65, 1.1, 1.55, [ 0.4,  2.3,  0.0]); // Mission Table
+makeModule('03', 2.0,  1.4, 1.4,  [-3.5,  0.0,  0.4]); // CAD Bay
+makeModule('04', 1.5,  1.2, 1.35, [-0.4, -2.3,  0.0]); // Archive
+makeModule('05', 1.3,  1.1, 1.25, [ 2.0, -1.6,  0.3]); // Comms
+
+// Solar arrays
+function solarArray(xOffset) {
+  const g = new THREE.Group();
+  [-0.85, 0.85].forEach(yo => {
+    const arm = box(0.06, 0.06, 2.9, MAT.frame);
+    arm.position.set(-0.9, yo, 0); g.add(arm);
+    const arm2 = box(0.06, 0.06, 2.9, MAT.frame);
+    arm2.position.set(0.9, yo, 0); g.add(arm2);
+    [-0.85, 0, 0.85].forEach(zo => {
+      const panel = box(1.6, 0.04, 0.78, MAT.solar);
+      panel.position.set(0, yo, zo); g.add(panel);
+      const th = box(1.72, 0.06, 0.06, MAT.frame);
+      th.position.set(0, yo, zo - 0.4); g.add(th);
+      const tb = box(1.72, 0.06, 0.06, MAT.frame);
+      tb.position.set(0, yo, zo + 0.4); g.add(tb);
+    });
+  });
+  g.position.x = xOffset;
+  station.add(g);
+}
+solarArray(-5.6);
+solarArray( 5.6);
+
+// Connection nodes on truss
+[-4, -2.5, 0, 2.5, 4].forEach(x => {
+  const n = box(0.32, 0.32, 0.32, MAT.light);
+  n.position.x = x;
+  n.castShadow = true;
+  station.add(n);
+});
+
+scene.add(station);
+
+// ═══════════════════════════════════════════════
+// CAMERA PRESETS
+// ═══════════════════════════════════════════════
+const CAM = {
+  '00': { pos:[0, 2, 15],  look:[0,    0,   0]   }, // entry
+  '01': { pos:[7, 0.5, 8], look:[3.5,  0,   0.5] },
+  '02': { pos:[0.5, 5.5,8],look:[0.4,  2.3, 0]   },
+  '03': { pos:[-7, 0.5,8], look:[-3.5, 0,   0.4] },
+  '04': { pos:[-0.5,-5.5,8],look:[-0.4,-2.3,0]   },
+  '05': { pos:[5, -3, 8],  look:[2.0, -1.6, 0.3] },
+};
+
+const tPos  = new THREE.Vector3(0, 2, 15);
+const tLook = new THREE.Vector3(0, 0,  0);
+const cLook = new THREE.Vector3(0, 0,  0);
+let activeId   = null;
+let inside     = false;
+
+// ═══════════════════════════════════════════════
+// RAYCASTER
+// ═══════════════════════════════════════════════
+const raycaster = new THREE.Raycaster();
+const mouse     = new THREE.Vector2(-9999, -9999);
+let   hovered   = null;
+const tooltip   = document.getElementById('tooltip');
+
+canvas.addEventListener('mousemove', e => {
+  if (!inside) return;
+  mouse.set((e.clientX/W)*2-1, -(e.clientY/H)*2+1);
+  tooltip.style.left = (e.clientX + 14) + 'px';
+  tooltip.style.top  = (e.clientY - 8)  + 'px';
+});
+
+canvas.addEventListener('click', e => {
+  if (!inside) return;
+  raycaster.setFromCamera(mouse, camera);
+  const hits = raycaster.intersectObjects(interactiveObjects);
+  if (hits.length) {
+    const id = hits[0].object.userData.modId;
+    if (id) { navTo(id); openPanel(id); }
+  }
+});
+
+// ═══════════════════════════════════════════════
+// UI FUNCTIONS
+// ═══════════════════════════════════════════════
+function enterStation() {
+  document.getElementById('entry').classList.add('leaving');
+  setTimeout(() => {
+    document.getElementById('topbar').classList.add('show');
+    document.getElementById('botnav').classList.add('show');
+    inside = true;
+    navTo('01');
+    setTimeout(() => openPanel('01'), 700);
+  }, 500);
+}
+
+function navTo(id) {
+  activeId = id;
+  const c = CAM[id];
+  tPos.set(...c.pos);
+  tLook.set(...c.look);
+
+  document.querySelectorAll('.nb').forEach(b => {
+    b.classList.toggle('on', b.dataset.mod === id);
+  });
+
+  interactiveObjects.forEach(m => {
+    if (m.material.emissive) {
+      m.material.emissiveIntensity = m.userData.modId === id ? 0.18 : 0;
+      m.material.emissive.set(m.userData.modId === id ? '#00C8FF' : '#000000');
+    }
+  });
+}
+
+function openPanel(id) {
+  const d = MODULES[id];
+  document.getElementById('p-tag').textContent   = d.tag;
+  document.getElementById('p-mname').textContent = d.mname;
+  document.getElementById('p-cta').textContent   = d.cta;
+  document.getElementById('p-body').innerHTML    =
+    `<div class="hd-title">${d.title}</div>
+     <div class="hd-sub">${d.sub}</div>
+     <div class="hd-div"></div>${d.html}`;
+  document.getElementById('hud').classList.add('open');
+  document.getElementById('dimmer').classList.add('on');
+}
+
+function closePanel() {
+  document.getElementById('hud').classList.remove('open');
+  document.getElementById('dimmer').classList.remove('on');
+}
+
+function handleCV() {
+  alert('CV: enlace de descarga disponible una vez se configure el archivo PDF.\nContacto: ver Módulo 05 — Communications Console.');
+}
+
+document.getElementById('p-cta').addEventListener('click', () => {
+  if (activeId === '01' || activeId === '05') handleCV();
+  else if (activeId === '02') { navTo('03'); openPanel('03'); }
+  else if (activeId === '03') { navTo('04'); openPanel('04'); }
+  else if (activeId === '04') { navTo('05'); openPanel('05'); }
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+// ═══════════════════════════════════════════════
+// ANIMATION LOOP
+// ═══════════════════════════════════════════════
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+
+  // Gentle station drift
+  station.rotation.y = Math.sin(t * 0.07) * 0.05;
+  station.rotation.x = Math.sin(t * 0.045) * 0.018;
+
+  // HUD glow pulse
+  hud_light.intensity = 0.4 + Math.sin(t * 1.8) * 0.09;
+
+  // Camera lerp
+  camera.position.lerp(tPos, 0.022);
+  cLook.lerp(tLook, 0.022);
+  camera.lookAt(cLook);
+
+  // Raycaster hover
+  if (inside) {
+    raycaster.setFromCamera(mouse, camera);
+    const hits = raycaster.intersectObjects(interactiveObjects);
+    if (hits.length && hits[0].object.userData.modId) {
+      const id   = hits[0].object.userData.modId;
+      const name = MODULES[id].mname;
+      canvas.style.cursor = 'pointer';
+      if (hovered !== id) {
+        hovered = id;
+        tooltip.textContent = `MOD.${id} — ${name}`;
+        tooltip.classList.add('show');
+      }
+    } else {
+      canvas.style.cursor = 'default';
+      if (hovered) { hovered = null; tooltip.classList.remove('show'); }
+    }
+  }
+
+  renderer.render(scene, camera);
+}
+animate();
+
+// ═══════════════════════════════════════════════
+// LOADING SEQUENCE
+// ═══════════════════════════════════════════════
+const msgs = [
+  'INITIALIZING NAVIGATION SYSTEMS...',
+  'CALIBRATING LUNAR ORBIT...',
+  'LOADING ENGINEERING MODULES...',
+  'SYSTEMS NOMINAL — READY'
+];
+let mIdx = 0;
+const ldSub = document.getElementById('ldsub');
+const msgInterval = setInterval(() => {
+  mIdx = Math.min(mIdx + 1, msgs.length - 1);
+  ldSub.textContent = msgs[mIdx];
+  if (mIdx === msgs.length - 1) clearInterval(msgInterval);
+}, 550);
+
+setTimeout(() => document.getElementById('ldbar').style.width = '100%', 80);
+setTimeout(() => {
+  document.getElementById('loading').classList.add('out');
+  document.getElementById('entry').classList.add('ready');
+}, 2400);
+
+// ═══════════════════════════════════════════════
+// RESIZE
+// ═══════════════════════════════════════════════
+window.addEventListener('resize', () => {
+  W = window.innerWidth; H = window.innerHeight;
+  camera.aspect = W / H;
+  camera.updateProjectionMatrix();
+  renderer.setSize(W, H);
+});
+</script>
+</body>
+</html>
