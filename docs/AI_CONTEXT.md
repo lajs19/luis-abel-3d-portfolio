@@ -76,15 +76,11 @@ Ejemplos:
 * Un diploma muestra certificaciones.
 * Una tarjeta profesional muestra contacto.
 
-## Título principal de posicionamiento del sitio
+## Título oficial del sitio
 
-Título principal:
+Título confirmado — Línea 1: Especialista en Diseño Técnico y Simulación FEA/CFD
 
-Encargado de Diseño Técnico | Proyectos Civiles, Mecánicos y Eléctricos
-
-Subtítulo:
-
-Diseño 3D · Líneas de Transmisión · Fundaciones · Documentación Técnica · Supervisión de Proyectos
+Título confirmado — Línea 2: Supervisión y Coordinación de Proyectos de Ingeniería
 
 Este título debe usarse en la entrada principal del sitio, tarjetas de presentación, hero section, metadatos y panel inicial.
 
