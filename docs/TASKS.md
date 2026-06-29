@@ -1,25 +1,28 @@
-﻿# Tasks
+# Tasks
 
 ## Fase 0 — Preparación
 
-* [ ] Crear repositorio en GitHub.
-* [ ] Agregar README.md.
-* [ ] Agregar AGENTS.md.
-* [ ] Agregar CLAUDE.md.
-* [ ] Agregar GEMINI.md.
-* [ ] Agregar CODEX.md.
-* [ ] Crear carpeta docs.
-* [ ] Agregar AI_CONTEXT.md.
-* [ ] Agregar PROJECT_BRIEF.md.
-* [ ] Agregar SCENE_MAP.md.
-* [ ] Agregar CONTENT_STRATEGY.md.
-* [ ] Agregar ROADMAP.md.
-* [ ] Agregar DESIGN_SYSTEM.md.
-* [ ] Agregar TECH_STACK.md.
-* [ ] Agregar QA_CHECKLIST.md.
-* [ ] Agregar ASSET_GUIDELINES.md.
-* [ ] Agregar ERROR_LOG.md.
-* [ ] Agregar DECISIONS.md.
+* [x] Crear repositorio en GitHub.
+* [x] Agregar README.md.
+* [x] Agregar AGENTS.md.
+* [x] Agregar CLAUDE.md.
+* [x] Agregar GEMINI.md.
+* [x] Agregar CODEX.md.
+* [x] Crear carpeta docs.
+* [x] Agregar AI_CONTEXT.md.
+* [x] Agregar PROJECT_BRIEF.md.
+* [x] Agregar SCENE_MAP.md.
+* [x] Agregar CONTENT_STRATEGY.md.
+* [x] Agregar ROADMAP.md.
+* [x] Agregar DESIGN_SYSTEM.md.
+* [x] Agregar TECH_STACK.md.
+* [x] Agregar QA_CHECKLIST.md.
+* [x] Agregar ASSET_GUIDELINES.md.
+* [x] Agregar ERROR_LOG.md.
+* [x] Agregar DECISIONS.md.
+* [x] Agregar GPT.md.
+* [x] Agregar STATUS.md.
+* [x] Agregar WORKFLOW.md.
 
 ## Fase 1 — Setup técnico
 
